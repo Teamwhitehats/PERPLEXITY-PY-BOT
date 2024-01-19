@@ -6,7 +6,8 @@ import flask
 from user_agent import generate_user_agent as rrr
 from perplexityai import Perplexity
 
-bot = telebot.TeleBot('6907162521:AAFvFDfLhck5H2JPFNuAVQvHAyetEcND3JA')
+tk = os.environ.get('BOT_TOK')
+bot = telebot.TeleBot(tk)
 
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
