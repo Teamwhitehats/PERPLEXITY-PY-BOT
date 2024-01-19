@@ -36,6 +36,5 @@ def chatbot(text):
   s = len(ans) - 1
   ss = ans[s]['answer']
   rr= ss.split('[')[0].strip()
-  return f"{rr}"
-
+  return f"{rr}."
 bot.infinity_polling()
