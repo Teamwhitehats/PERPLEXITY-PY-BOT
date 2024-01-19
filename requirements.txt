@@ -1,0 +1,5 @@
+telebot
+requests
+flask
+user_agent
+perplexity
