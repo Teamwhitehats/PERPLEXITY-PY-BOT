@@ -2,5 +2,4 @@ telebot
 requests
 flask
 user_agent
-perplexityai
 threading
