@@ -9,6 +9,7 @@ try:
 	from perplexityai import Perplexity
 except:
 	os.system("pip install -U perplexityai")
+from perplexityai import Perplexity	
 from hh import keep_alive
 
 tk = os.environ.get('BOT_TOK')
