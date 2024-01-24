@@ -6,6 +6,7 @@ from datetime import datetime, timedelta
 import flask
 from user_agent import generate_user_agent as rrr
 from perplexityai import Perplexity
+from hh import keep_alive
 
 tk = os.environ.get('BOT_TOK')
 bot = telebot.TeleBot(tk)
@@ -32,9 +33,13 @@ def ru(message):
 
 
 def chatbot(text):
-  ans = list(Perplexity().generate_answer(text))
-  s = len(ans) - 1
-  ss = ans[s]['answer']
-  rr= ss.split('[')[0].strip()
-  return f"{rr}."
-bot.infinity_polling()
+	ans = list(Perplexity().generate_answer(text))
+	nn = ans[-1]
+	ch = nn['chunks']
+	ff = ' '.join(ch)
+	cc = re.sub(r'\[\d+\]', '', ff)
+	cc = re.sub(r'\s*([.,;!?])\s*', r'\1', cc)
+	cc = re.sub(r'\s+', ' ', cc).strip()
+	return cc
+keep_alive()
+bot.polling()
