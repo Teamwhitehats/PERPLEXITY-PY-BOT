@@ -4,6 +4,7 @@ import requests,re
 from datetime import datetime, timedelta
 import flask
 from user_agent import generate_user_agent as rrr
+import os
 try:
     from perplexityai import Perplexity
 except:
