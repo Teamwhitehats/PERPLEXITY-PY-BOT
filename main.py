@@ -1,19 +1,14 @@
-import os
 import telebot
 from telebot import types
-import requests
+import requests,re
 from datetime import datetime, timedelta
 import flask
 from user_agent import generate_user_agent as rrr
-try:
-	from perplexityai import Perplexity
-except:
-	os.system("pip install -U perplexityai")
-from perplexityai import Perplexity	
+from perplexityai import Perplexity
 from hh import keep_alive
 
-tk = os.environ.get('BOT_TOK')
-bot = telebot.TeleBot(tk)
+token=os.environ.get("TOK")
+bot = telebot.TeleBot(token)
 
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
@@ -37,13 +32,12 @@ def ru(message):
 
 
 def chatbot(text):
-	ans = list(Perplexity().generate_answer(text))
-	nn = ans[-1]
-	ch = nn['chunks']
-	ff = ' '.join(ch)
-	cc = re.sub(r'\[\d+\]', '', ff)
-	cc = re.sub(r'\s*([.,;!?])\s*', r'\1', cc)
-	cc = re.sub(r'\s+', ' ', cc).strip()
-	return cc
+    res = []
+    for a in Perplexity().generate_answer(text):
+        result = re.sub(r'\[\d+\]', '', a['answer'])
+        res.append(result)
+    cc = f"{res[-1]}"
+    return cc
+
 keep_alive()
 bot.polling()
