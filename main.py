@@ -4,7 +4,10 @@ import requests,re
 from datetime import datetime, timedelta
 import flask
 from user_agent import generate_user_agent as rrr
-from perplexityai import Perplexity
+try:
+    from perplexityai import Perplexity
+except:
+    os.system("python -m pip install -U perplexityai")
 from hh import keep_alive
 
 token=os.environ.get("TOK")
