@@ -1,4 +1,2 @@
-telebot
 requests
-flask
-user_agent
+pywebio
